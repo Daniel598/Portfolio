@@ -1,0 +1,589 @@
+@font-face {
+    font-family: "Helvetica Neue Light";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Helvetica Neue Light"), url(../fonter/HelveticaNeueLight.woff) format("woff")
+}
+
+@font-face {
+    font-family: "Helvetica 83 Heavy Extended";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Helvetica 83 Heavy Extended"), url(../fonter/HelveticaNeue-HeavyExt.woff) format("woff")
+}
+
+@font-face {
+    font-family: "Helvetica 53 Extended Oblique";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Helvetica 53 Extended Oblique"), url(../fonter/HelveticaNeue-ExtendedObl.woff) format("woff")
+}
+
+:root {
+    color-scheme: light dark;
+    --bakgrunn: light-dark(white, black);
+    --tekst: light-dark(black, white);
+    --border: light-dark(black, white)
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font-family: "Helvetica Neue Light", sans-serif;
+    line-height: 1.6;
+    color: var(--tekst);
+    background-color: var(--bakgrunn);
+    font-size: 1.1rem
+}
+
+footer p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header h1,
+header hgroup p {
+    font-family: "Helvetica 83 Heavy Extended", sans-serif
+}
+
+h2 {
+    font-size: 3.5rem
+}
+
+h1 span,
+header h1 span {
+    display: block
+}
+
+h1 span:first-child,
+h1 span:nth-child(2) {
+    -webkit-text-stroke: 2px var(--tekst);
+    color: transparent
+}
+
+main {
+    padding: 20px
+}
+
+section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .5s ease-out, transform .5s ease-out;
+    margin-bottom: 80px
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0)
+}
+
+#kontakt > p,
+#prosjekter > p {
+    margin-bottom: 30px;
+    font-size: 1.1rem
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(../bilder/header.jpg)
+}
+
+header::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, .7)
+}
+
+header hgroup {
+    position: relative;
+    z-index: 1;
+    animation: 2s ease-in-out fadeIn
+}
+
+header h1 span:first-child,
+header h1 span:nth-child(2) {
+    -webkit-text-stroke: 2px #fff !important;
+    color: transparent
+}
+
+header hgroup p {
+    font-size: 1rem;
+    color: #fff;
+    margin-top: 0
+}
+
+.bildetekst {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: .8rem;
+    opacity: .7;
+    z-index: 2
+}
+
+.bildetekst a {
+    color: #fff
+}
+
+nav,
+nav ul {
+    display: flex;
+    align-items: center
+}
+
+nav {
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    justify-content: space-between
+}
+
+nav > a svg {
+    height: 24px;
+    width: auto;
+    fill: var(--tekst);
+    float: left
+}
+
+nav ul {
+    justify-content: flex-end
+}
+
+nav ul li {
+    margin-left: 20px
+}
+
+nav ul li a:hover {
+    text-decoration: underline
+}
+
+#om-meg figcaption,
+#temavelger,
+#utdanning figcaption,
+button,
+nav ul li a {
+    font-family: "Helvetica 83 Heavy Extended", sans-serif;
+    color: var(--tekst)
+}
+
+#temavelger {
+    padding: 5px
+}
+
+button {
+    font-size: 1rem;
+    padding: 20px 50px;
+    position: relative;
+    cursor: pointer
+}
+
+#prosjekter article a:hover,
+button:hover {
+    background-color: var(--tekst);
+    color: var(--bakgrunn)
+}
+
+#om-meg,
+#utdanning {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 80px
+}
+
+#om-meg > *,
+#utdanning > * {
+    flex: 1 1 100%
+}
+
+#om-meg p,
+#utdanning ul {
+    flex: 1 1 50%;
+    padding-right: 20px
+}
+
+#om-meg figure,
+#utdanning figure {
+    flex: 1 1 40%;
+    margin-left: 20px;
+    position: relative
+}
+
+#om-meg img,
+#utdanning img {
+    height: auto;
+    transition: filter .3s
+}
+
+#om-meg img:hover,
+#prosjekter article:hover header,
+#utdanning img:hover {
+    filter: grayscale(0%)
+}
+
+#om-meg figcaption,
+#utdanning figcaption {
+    position: absolute;
+    bottom: -25px;
+    left: -25px;
+    right: -25px;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.4rem;
+    background-color: rgba(var(--bakgrunn), .8)
+}
+
+#prosjekter section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    align-items: stretch
+}
+
+#prosjekter article {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative
+}
+
+#prosjekter article header {
+    height: 200px;
+    filter: grayscale(100%);
+    transition: filter .3s
+}
+
+#prosjekter article:first-child header {
+    background-image: url(../bilder/haunted_legacy.png)
+}
+
+#prosjekter article:nth-child(2) header {
+    background-image: url(../bilder/directors_Viewar.jpg)
+}
+
+#prosjekter article:nth-child(3) header {
+    background-image: url(../bilder/enter.png)
+}
+
+#prosjekter article header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5)
+}
+
+#prosjekter article h3 {
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    color: #fff;
+    margin: 0;
+    z-index: 1
+}
+
+#prosjekter article p {
+    flex-grow: 1;
+    padding: 20px;
+    margin: 0
+}
+
+#prosjekter article footer {
+    padding: 20px;
+    margin: 0;
+    position: relative;
+    z-index: 1
+}
+
+#prosjekter article a,
+input,
+textarea {
+    background-color: var(--bakgrunn);
+    color: var(--tekst)
+}
+
+#prosjekter article a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    position: absolute;
+    bottom: 20px;
+    right: 20px
+}
+
+#prosjekter article a::before {
+    content: "↗";
+    font-size: 24px
+}
+
+#prosjekter article a::after {
+    transition: .3s
+}
+
+#utdanning ul {
+    padding-left: 0
+}
+
+#utdanning > ul > li {
+    margin-bottom: 20px
+}
+
+#utdanning hgroup h3,
+#utdanning ul ul li {
+    margin-bottom: 5px
+}
+
+#utdanning hgroup p {
+    font-family: "Helvetica 53 Extended Oblique", sans-serif;
+    margin-bottom: 10px
+}
+
+#utdanning ul ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-top: 10px
+}
+
+form {
+    display: grid;
+    gap: 10px
+}
+
+input,
+textarea {
+    font-family: "Helvetica Neue Light", sans-serif;
+    width: 100%;
+    padding: 10px
+}
+
+input::placeholder,
+textarea::placeholder {
+    font-size: 1rem
+}
+
+fieldset[role=group] {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    border: 0;
+    padding: 0
+}
+
+fieldset[role=group] button {
+    flex: 1
+}
+
+footer,
+footer a {
+    color: var(--tekst)
+}
+
+footer {
+    padding: 20px 0;
+    text-transform: uppercase
+}
+
+footer nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px
+}
+
+footer a {
+    margin: 0 10px
+}
+
+footer svg {
+    width: 36px;
+    height: 36px;
+    fill: var(--tekst);
+    transition: fill .3s
+}
+
+footer a:hover svg {
+    fill: var(--border)
+}
+
+footer p {
+    margin-bottom: 10px
+}
+
+@media (max-width:768px) {
+    nav {
+        display: none
+    }
+
+    #prosjekter section {
+        grid-template-columns: 1fr
+    }
+
+    #om-meg,
+    #utdanning {
+        flex-direction: column
+    }
+
+    #om-meg figure,
+    #utdanning figure {
+        margin-left: 0;
+        margin-top: 20px;
+        max-width: 100%
+    }
+
+    footer nav {
+        flex-direction: row;
+        flex-wrap: wrap
+    }
+}
+
+header,
+header a {
+    color: #fff !important
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+h1,
+header h1 {
+    font-size: 4rem;
+    line-height: 1.2
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header h1 {
+    margin-bottom: 20px
+}
+
+footer,
+main,
+nav {
+    max-width: 1200px;
+    margin: 0 auto
+}
+
+#temavelger,
+nav ul li a {
+    font-size: .9rem
+}
+
+#om-meg figcaption,
+#utdanning figcaption,
+button,
+h1,
+h2 {
+    text-transform: uppercase
+}
+
+#prosjekter article header,
+header {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative
+}
+
+#om-meg img,
+#utdanning img,
+header {
+    filter: grayscale(100%);
+    width: 100%
+}
+
+#prosjekter article a:hover::after,
+button:hover::after,
+header::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
+#prosjekter article a,
+button {
+    border: 1px solid var(--tekst)
+}
+
+#prosjekter article a::after,
+button::after {
+    content: "";
+    position: absolute;
+    background-color: var(--tekst);
+    top: 8px;
+    left: 8px;
+    right: -8px;
+    bottom: -8px;
+    z-index: -1
+}
+
+#prosjekter article a,
+*,
+button,
+button::after,
+nav ul li a {
+    transition: .3s
+}
+
+#utdanning ul,
+nav ul {
+    list-style-type: none
+}
+
+#prosjekter article,
+#temavelger,
+input,
+textarea {
+    border: 1px solid var(--border)
+}
+
+footer,
+header {
+    text-align: center
+}
+
+#temavelger,
+body,
+button,
+footer,
+nav {
+    background-color: var(--bakgrunn)
+}
+
+footer a,
+nav ul li a {
+    text-decoration: none
+}
